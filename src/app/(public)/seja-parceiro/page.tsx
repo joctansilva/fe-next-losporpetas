@@ -1,16 +1,13 @@
-import { PagePlaceholder } from '@/components/layout/page-placeholder';
+import type { Metadata } from 'next';
+import { PartnerView } from '@/views/partner/partner-view';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Seja parceiro',
-  description: 'Coloque seu restaurante no mapa. Indicação, destaque e ações patrocinadas.',
+  description:
+    'Coloque seu restaurante no mapa do LOSPORPETAS: indicação editorial, destaque e ações em conjunto.',
+  alternates: { canonical: '/seja-parceiro' },
 };
 
 export default function SejaParceiroPage() {
-  return (
-    <PagePlaceholder
-      title="Seja parceiro"
-      phase="Fase 1.7"
-      description="Os tipos de parceria e o formulário para restaurantes interessados em conversar."
-    />
-  );
+  return <PartnerView />;
 }
