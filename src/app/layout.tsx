@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Bebas_Neue, Inter, JetBrains_Mono } from 'next/font/google';
 import { NoiseOverlay } from '@/components/layout/noise-overlay';
 import { SITE } from '@/lib/site';
-import './globals.css';
+import '@/styles/globals.css';
 
 /* Fontes self-hosted no build por next/font — sem <link> para o Google.
    Além de uma conexão a menos, evita enviar o IP do visitante ao Google (LGPD). */

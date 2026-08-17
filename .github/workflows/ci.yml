@@ -39,6 +39,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Convenção de rotas
+        run: pnpm check:routes
+
       - name: Format check
         run: pnpm format:check
 

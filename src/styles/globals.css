@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import '../styles/theme.css';
-@import '../styles/utilities.css';
+@import './theme.css';
+@import './utilities.css';
 
 /* ==========================================================================
  * CAMADA BASE
