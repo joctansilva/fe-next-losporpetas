@@ -1,5 +1,19 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonClassName } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Chip } from '@/components/ui/chip';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Input } from '@/components/ui/input';
+import { Pagination } from '@/components/ui/pagination';
+import { Select } from '@/components/ui/select';
+import { RestaurantCardSkeleton } from '@/components/ui/skeleton';
+import { SponsoredLabel } from '@/components/ui/sponsored-label';
+import { Stamp } from '@/components/ui/stamp';
+import { Textarea } from '@/components/ui/textarea';
 import { CATEGORY_ICONS, ICON_SIZE, Icons } from '@/lib/icons';
+import { ModalDemo } from './modal-demo';
 
 /**
  * Vitrine do design system — referência viva dos tokens extraídos do Stitch.
@@ -167,31 +181,151 @@ export default function DesignSystemPage() {
         </div>
       </Section>
 
-      <Section title="Botões e foco">
+      <Section title="Button">
         <div className="flex flex-wrap items-center gap-md">
-          <button
-            type="button"
-            className="ink-border ink-lift-sm bg-primary px-md py-sm font-mono text-label-mono font-bold text-on-primary uppercase"
-          >
-            Descobrir
-          </button>
-          <button
-            type="button"
-            className="ink-border ink-lift-sm bg-surface px-md py-sm font-mono text-label-mono font-bold text-on-surface uppercase"
-          >
-            Indicar um lugar
-          </button>
-          <button
-            type="button"
-            disabled
-            className="ink-border bg-surface-dim px-md py-sm font-mono text-label-mono font-bold text-on-surface-variant uppercase opacity-50"
-          >
-            Encerrado
-          </button>
-          <p className="text-body-sm text-on-surface-variant">
-            Navegue com <kbd className="ink-border px-xs font-mono text-meta-mono">Tab</kbd> — o
-            contorno de foco é obrigatório e vem do <code>:focus-visible</code> global.
-          </p>
+          <Button variant="primary">Descobrir</Button>
+          <Button variant="secondary">Indicar um lugar</Button>
+          <Button variant="ghost">Ver mapa completo</Button>
+          <Button disabled>Sorteio encerrado</Button>
+        </div>
+        <div className="mt-md flex flex-wrap items-center gap-md">
+          <Button size="sm">Pequeno</Button>
+          <Button size="md">Médio</Button>
+          <Button size="lg">Grande</Button>
+          <Link href="/dev/design-system" className={buttonClassName({ variant: 'secondary' })}>
+            Link com cara de botão
+          </Link>
+        </div>
+        <div className="mt-md bg-on-background p-md">
+          <Button variant="inverse">Sobre fundo escuro</Button>
+        </div>
+        <p className="mt-md text-body-sm text-on-surface-variant">
+          Navegue com <kbd className="ink-border px-xs font-mono text-meta-mono">Tab</kbd> — o
+          contorno de foco vem do <code>:focus-visible</code> global. Navegação usa{' '}
+          <code>buttonClassName()</code> num <code>&lt;Link&gt;</code>; ação usa{' '}
+          <code>&lt;Button&gt;</code>.
+        </p>
+      </Section>
+
+      <Section title="Badge, Chip, Stamp e SponsoredLabel">
+        <div className="flex flex-wrap items-center gap-sm">
+          <Badge tone="primary">Top pick</Badge>
+          <Badge tone="ink">Parceiro</Badge>
+          <Badge tone="mustard">Termina hoje</Badge>
+          <Badge tone="muted">Pinheiros</Badge>
+          <Badge tone="outline">$$</Badge>
+          <Badge tone="success">Aprovado</Badge>
+          <Badge tone="error">Encerrado</Badge>
+        </div>
+
+        <div className="mt-md flex flex-wrap items-center gap-sm">
+          <Chip href="/dev/design-system" active>
+            Todos
+          </Chip>
+          <Chip href="/dev/design-system">Hamburgueria</Chip>
+          <Chip href="/dev/design-system">Pizza</Chip>
+          <Chip href="/dev/design-system">Japonês</Chip>
+        </div>
+
+        <div className="mt-lg flex flex-wrap items-center gap-lg">
+          <Stamp size="sm" />
+          <Stamp size="md" />
+          <div className="flex items-center gap-sm">
+            <SponsoredLabel kind="publi" />
+            <SponsoredLabel kind="partner" />
+          </div>
+        </div>
+
+        <p className="mt-md max-w-2xl text-body-sm text-on-surface-variant">
+          ⚠️ O <code>Stamp</code> é curadoria editorial e só aparece quando{' '}
+          <code>curationStatus === &apos;approved&apos;</code>. Parceria comercial nunca o produz —
+          nesse caso vale o <code>SponsoredLabel</code>, que é obrigatório em slot patrocinado.
+        </p>
+      </Section>
+
+      <Section title="Card">
+        <div className="grid grid-cols-1 gap-md md:grid-cols-3">
+          <Card className="p-md">
+            <h3 className="text-headline-md">Padrão</h3>
+            <p className="mt-xs text-body-sm text-on-surface-variant">Só a borda de tinta.</p>
+          </Card>
+          <Card raised surface="lowest" className="p-md">
+            <h3 className="text-headline-md">Raised</h3>
+            <p className="mt-xs text-body-sm text-on-surface-variant">Sombra sólida em repouso.</p>
+          </Card>
+          <Card interactive surface="low" className="p-md">
+            <h3 className="text-headline-md">Interactive</h3>
+            <p className="mt-xs text-body-sm text-on-surface-variant">
+              Passe o mouse — o card levanta.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      <Section title="Campos de formulário">
+        <div className="grid grid-cols-1 gap-md md:grid-cols-2">
+          <Input id="ds-nome" label="Nome do restaurante" required placeholder="Smash Bros" />
+          <Input
+            id="ds-email"
+            label="E-mail"
+            type="email"
+            hint="Só usamos para responder sua sugestão."
+          />
+          <Input
+            id="ds-erro"
+            label="WhatsApp"
+            required
+            defaultValue="119"
+            error="Informe um número com DDD e 9 dígitos."
+          />
+          <Select
+            id="ds-bairro"
+            label="Bairro"
+            placeholder="Todos"
+            options={[
+              { value: 'centro', label: 'Centro' },
+              { value: 'pinheiros', label: 'Pinheiros' },
+              { value: 'mooca', label: 'Mooca' },
+            ]}
+          />
+          <Textarea
+            id="ds-motivo"
+            label="Por que vale a visita?"
+            hint="Duas ou três linhas bastam."
+            className="md:col-span-2"
+          />
+        </div>
+      </Section>
+
+      <Section title="Modal">
+        <ModalDemo />
+        <p className="mt-md max-w-2xl text-body-sm text-on-surface-variant">
+          Construído sobre o <code>&lt;dialog&gt;</code> nativo. Abra e teste{' '}
+          <strong>só com o teclado</strong>:{' '}
+          <kbd className="ink-border px-xs font-mono text-meta-mono">Tab</kbd> fica preso dentro,{' '}
+          <kbd className="ink-border px-xs font-mono text-meta-mono">Esc</kbd> fecha, e o foco volta
+          para o botão que abriu.
+        </p>
+      </Section>
+
+      <Section title="EmptyState e Skeleton">
+        <EmptyState
+          icon={Icons.search}
+          title="Nada encontrado"
+          description="Nenhum restaurante bate com esses filtros. Que tal indicar um lugar que faltou?"
+          action={<Button variant="secondary">Limpar filtros</Button>}
+        />
+        <div className="mt-md grid grid-cols-1 gap-md md:grid-cols-3">
+          <RestaurantCardSkeleton />
+          <RestaurantCardSkeleton />
+          <RestaurantCardSkeleton />
+        </div>
+      </Section>
+
+      <Section title="Pagination">
+        <Pagination page={1} totalPages={3} buildHref={(p) => `?pagina=${p}`} />
+        <div className="mt-md">
+          <Pagination page={5} totalPages={20} buildHref={(p) => `?pagina=${p}`} />
         </div>
       </Section>
 
