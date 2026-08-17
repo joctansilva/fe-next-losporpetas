@@ -25,7 +25,7 @@ export function Chip({ children, href, active = false, className }: ChipProps) {
       href={href}
       aria-current={active ? 'page' : undefined}
       className={cn(
-        'ink-border inline-flex min-h-[36px] items-center px-md py-xs font-mono text-label-mono uppercase transition-colors',
+        'inline-flex min-h-[36px] items-center px-md py-xs font-mono text-label-mono uppercase transition-colors ink-border',
         active
           ? 'bg-primary text-on-primary'
           : 'bg-surface-bright text-on-surface hover:bg-surface-container-high',

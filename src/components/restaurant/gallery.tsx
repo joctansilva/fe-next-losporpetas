@@ -28,7 +28,7 @@ export function Gallery({ media }: { media: Media[] }) {
       <div className="grid grid-cols-2 gap-sm md:grid-cols-4">
         <figure
           className={cn(
-            'ink-border relative overflow-hidden bg-surface-dim',
+            'relative overflow-hidden bg-surface-dim ink-border',
             rest.length > 0
               ? 'col-span-2 row-span-2 aspect-square'
               : 'col-span-2 aspect-video md:col-span-4',
@@ -44,7 +44,7 @@ export function Gallery({ media }: { media: Media[] }) {
         {rest.map((item) => (
           <figure
             key={item.id}
-            className="ink-border relative col-span-2 aspect-[2/1] overflow-hidden bg-surface-dim"
+            className="relative col-span-2 aspect-[2/1] overflow-hidden bg-surface-dim ink-border"
           >
             <Photo
               media={item}

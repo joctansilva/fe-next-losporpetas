@@ -19,7 +19,7 @@ export function ExperienceTags({ tags }: { tags: Tag[] }) {
         <li key={tag.id}>
           <Link
             href={buildDirectoryHref({ tag: tag.slug })}
-            className="ink-border inline-flex rounded-full bg-surface px-sm py-xs font-mono text-label-mono text-on-surface uppercase transition-colors hover:bg-primary hover:text-on-primary"
+            className="inline-flex rounded-full bg-surface px-sm py-xs font-mono text-label-mono text-on-surface uppercase transition-colors ink-border hover:bg-primary hover:text-on-primary"
           >
             {tag.name}
           </Link>

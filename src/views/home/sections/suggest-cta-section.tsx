@@ -14,7 +14,7 @@ import { SUGGEST_CTA } from '@/lib/site';
 export function SuggestCtaSection() {
   return (
     <section className="relative w-full overflow-hidden bg-primary px-margin-mobile py-xl text-center text-on-primary md:px-margin-desktop">
-      <div aria-hidden="true" className="dot-pattern absolute inset-0 opacity-10" />
+      <div aria-hidden="true" className="absolute inset-0 dot-pattern opacity-10" />
 
       <div className="relative z-10 flex flex-col items-center">
         <h2 className="mb-md max-w-3xl text-display-xl leading-[0.9]">

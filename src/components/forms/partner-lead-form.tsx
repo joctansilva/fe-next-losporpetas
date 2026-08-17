@@ -28,7 +28,7 @@ export function PartnerLeadForm() {
   const instagram = SOCIAL_LINKS.find((link) => link.label === 'Instagram');
 
   return (
-    <div className="ink-border relative bg-surface p-md md:p-lg">
+    <div className="relative bg-surface p-md ink-border md:p-lg">
       {/* Fita adesiva decorativa do layout. */}
       <div
         aria-hidden="true"
@@ -101,7 +101,7 @@ export function PartnerLeadForm() {
           disabled
         />
 
-        <div className="ink-border flex flex-col gap-sm bg-tertiary-fixed-dim p-md">
+        <div className="flex flex-col gap-sm bg-tertiary-fixed-dim p-md ink-border">
           <p className="font-display text-headline-md leading-none">Envio ainda não liberado</p>
           <p className="text-body-md">
             Este formulário entra no ar junto com a política de privacidade definitiva. Enquanto

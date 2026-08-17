@@ -17,7 +17,7 @@ export default function PublicLayout({ children }: LayoutProps<'/'>) {
     <>
       <a
         href="#conteudo"
-        className="focus:ink-border sr-only focus:not-sr-only focus:absolute focus:top-sm focus:left-sm focus:z-[300] focus:bg-surface focus:px-md focus:py-sm focus:font-mono focus:text-label-mono focus:font-bold focus:uppercase"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-sm focus:left-sm focus:z-[300] focus:bg-surface focus:px-md focus:py-sm focus:font-mono focus:text-label-mono focus:font-bold focus:uppercase focus:ink-border"
       >
         Pular para o conteúdo
       </a>

@@ -24,7 +24,7 @@ export function ContactView() {
       </header>
 
       <div className="grid grid-cols-1 gap-md md:grid-cols-3">
-        <article className="ink-border flex flex-col gap-sm bg-surface-container-low p-md">
+        <article className="flex flex-col gap-sm bg-surface-container-low p-md ink-border">
           <Icons.add size={ICON_SIZE.lg} aria-hidden="true" className="text-primary" />
           <h2 className="text-headline-md leading-none">Indicar um lugar</h2>
           <p className="flex-grow text-body-md text-on-surface-variant">
@@ -36,7 +36,7 @@ export function ContactView() {
           </Link>
         </article>
 
-        <article className="ink-border flex flex-col gap-sm bg-surface-container-low p-md">
+        <article className="flex flex-col gap-sm bg-surface-container-low p-md ink-border">
           <Icons.store size={ICON_SIZE.lg} aria-hidden="true" className="text-primary" />
           <h2 className="text-headline-md leading-none">Sou restaurante</h2>
           <p className="flex-grow text-body-md text-on-surface-variant">
@@ -47,7 +47,7 @@ export function ContactView() {
           </Link>
         </article>
 
-        <article className="ink-border flex flex-col gap-sm bg-surface-container-low p-md">
+        <article className="flex flex-col gap-sm bg-surface-container-low p-md ink-border">
           <Icons.instagram size={ICON_SIZE.lg} aria-hidden="true" className="text-primary" />
           <h2 className="text-headline-md leading-none">Direct no Instagram</h2>
           <p className="flex-grow text-body-md text-on-surface-variant">

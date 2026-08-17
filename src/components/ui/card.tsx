@@ -40,7 +40,7 @@ export function Card({
   return (
     <Tag
       className={cn(
-        'ink-border flex flex-col',
+        'flex flex-col ink-border',
         SURFACE_CLASS[surface],
         raised && 'ink-shadow',
         interactive && 'ink-lift',

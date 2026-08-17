@@ -47,7 +47,7 @@ export function RestaurantHero({ restaurant }: { restaurant: RestaurantDetail })
         className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent"
       />
 
-      <div className="page-container relative z-10 flex flex-col items-end justify-between gap-md pb-lg md:flex-row">
+      <div className="relative z-10 page-container flex flex-col items-end justify-between gap-md pb-lg md:flex-row">
         <div className="flex w-full flex-col gap-sm text-white md:w-2/3">
           <div className="flex flex-wrap items-center gap-sm">
             <Badge tone="mustard" size="md">

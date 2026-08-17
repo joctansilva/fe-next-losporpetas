@@ -89,7 +89,7 @@ export function RestaurantCard({
         <div className="pointer-events-none absolute top-sm right-sm z-10">
           <Badge
             tone="primary"
-            className="ink-border shadow-[2px_2px_0_0_var(--color-on-background)]"
+            className="shadow-[2px_2px_0_0_var(--color-on-background)] ink-border"
           >
             {highlight}
           </Badge>

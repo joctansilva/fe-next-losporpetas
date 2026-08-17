@@ -71,7 +71,7 @@ export function Field({
 /** Classe compartilhada pelos controles, para input/textarea/select não divergirem. */
 export const controlClassName = (hasError: boolean, className?: string) =>
   cn(
-    'ink-border w-full bg-surface-container-lowest px-sm py-xs font-body text-body-md text-on-surface',
+    'w-full bg-surface-container-lowest px-sm py-xs font-body text-body-md text-on-surface ink-border',
     'min-h-[44px] transition-colors placeholder:text-on-surface-variant/60',
     'disabled:cursor-not-allowed disabled:opacity-50',
     hasError && 'border-error',

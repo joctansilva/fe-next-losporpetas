@@ -23,7 +23,7 @@ export function CampaignSteps({ steps }: { steps: CampaignStep[] }) {
         Como participar
       </h2>
 
-      <ol className="ink-border flex flex-col bg-surface-container-highest">
+      <ol className="flex flex-col bg-surface-container-highest ink-border">
         {ordered.map((step, index) => (
           <li
             key={step.step}

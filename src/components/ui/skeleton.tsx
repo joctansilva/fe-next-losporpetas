@@ -24,7 +24,7 @@ export function Skeleton({ variant = 'text', className }: SkeletonProps) {
   return (
     <div
       aria-hidden="true"
-      className={cn('ink-border animate-pulse bg-surface-dim', VARIANT_CLASS[variant], className)}
+      className={cn('animate-pulse bg-surface-dim ink-border', VARIANT_CLASS[variant], className)}
     />
   );
 }
@@ -32,7 +32,7 @@ export function Skeleton({ variant = 'text', className }: SkeletonProps) {
 /** Esqueleto de um card de restaurante, usado nos `loading.tsx` do diretório. */
 export function RestaurantCardSkeleton() {
   return (
-    <div className="ink-border flex flex-col bg-surface-container-low">
+    <div className="flex flex-col bg-surface-container-low ink-border">
       <div className="h-56 animate-pulse border-b-2 border-on-background bg-surface-dim" />
       <div className="flex flex-col gap-sm p-md">
         <Skeleton variant="title" />

@@ -71,7 +71,7 @@ export function MobileDrawer() {
         aria-label="Abrir menu"
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="ink-border flex size-11 items-center justify-center bg-surface text-on-surface transition-colors hover:bg-primary hover:text-on-primary md:hidden"
+        className="flex size-11 items-center justify-center bg-surface text-on-surface transition-colors ink-border hover:bg-primary hover:text-on-primary md:hidden"
       >
         <Icons.menu size={ICON_SIZE.lg} aria-hidden="true" />
       </button>

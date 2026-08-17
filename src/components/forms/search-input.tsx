@@ -51,7 +51,7 @@ export function SearchInput({
         defaultValue={defaultValue ?? ''}
         autoComplete="off"
         placeholder={placeholder}
-        className="ink-border w-full bg-surface-bright py-md pr-md pl-[3.5rem] font-mono text-body-lg text-on-surface uppercase transition-shadow placeholder:text-on-surface-variant focus:border-primary focus:shadow-[4px_4px_0_0_var(--color-primary)]"
+        className="w-full bg-surface-bright py-md pr-md pl-[3.5rem] font-mono text-body-lg text-on-surface uppercase transition-shadow ink-border placeholder:text-on-surface-variant focus:border-primary focus:shadow-[4px_4px_0_0_var(--color-primary)]"
       />
     </Form>
   );

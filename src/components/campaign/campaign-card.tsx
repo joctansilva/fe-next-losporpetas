@@ -77,7 +77,7 @@ export function CampaignCard({ campaign }: { campaign: CampaignListItem }) {
       <div className="bg-surface p-sm">
         <span
           aria-hidden="true"
-          className="ink-border flex w-full items-center justify-center py-xs font-mono text-label-mono uppercase transition-colors group-hover:bg-on-background group-hover:text-surface"
+          className="flex w-full items-center justify-center py-xs font-mono text-label-mono uppercase transition-colors ink-border group-hover:bg-on-background group-hover:text-surface"
         >
           {open ? 'Participar' : 'Ver detalhes'}
         </span>

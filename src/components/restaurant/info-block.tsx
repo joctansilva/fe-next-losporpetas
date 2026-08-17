@@ -31,7 +31,7 @@ export function InfoBlock({ restaurant }: { restaurant: RestaurantDetail }) {
   if (!hasAnyInfo) return null;
 
   return (
-    <aside className="ink-border flex flex-col gap-md bg-surface-container-low p-md">
+    <aside className="flex flex-col gap-md bg-surface-container-low p-md ink-border">
       <h2 className="border-b-2 border-on-background pb-xs text-headline-md">Informações</h2>
 
       <ul className="flex flex-col gap-sm text-body-md">
@@ -84,7 +84,7 @@ export function InfoBlock({ restaurant }: { restaurant: RestaurantDetail }) {
       </ul>
 
       {directions && (
-        <div className="ink-border relative flex h-40 items-center justify-center bg-surface-variant">
+        <div className="relative flex h-40 items-center justify-center bg-surface-variant ink-border">
           <Icons.map
             size={ICON_SIZE.display}
             aria-hidden="true"

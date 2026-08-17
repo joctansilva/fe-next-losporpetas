@@ -36,7 +36,7 @@ export function LegalPageView({ title, intro, sections }: LegalPageViewProps) {
       {LEGAL_IS_PROVISIONAL && (
         <aside
           role="note"
-          className="ink-border ink-shadow flex flex-col gap-xs bg-tertiary-fixed-dim p-md text-on-background"
+          className="flex flex-col gap-xs bg-tertiary-fixed-dim p-md text-on-background ink-shadow ink-border"
         >
           <p className="font-display text-headline-md leading-none">Texto provisório</p>
           <p className="text-body-md">

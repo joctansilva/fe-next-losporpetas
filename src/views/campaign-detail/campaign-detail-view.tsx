@@ -40,8 +40,8 @@ export function CampaignDetailView({ campaign, related }: CampaignDetailViewProp
   return (
     <Container as="div" className="flex flex-col gap-xl py-lg md:py-xl">
       <section className="grid grid-cols-1 gap-lg md:grid-cols-12 md:gap-gutter">
-        <div className="ink-border relative h-[300px] bg-surface-container-highest p-xs md:col-span-7 md:h-[480px]">
-          <div className="ink-border relative size-full overflow-hidden bg-on-surface">
+        <div className="relative h-[300px] bg-surface-container-highest p-xs ink-border md:col-span-7 md:h-[480px]">
+          <div className="relative size-full overflow-hidden bg-on-surface ink-border">
             <Photo media={campaign.cover} context="hero" priority />
           </div>
         </div>
@@ -50,7 +50,7 @@ export function CampaignDetailView({ campaign, related }: CampaignDetailViewProp
           <div className="flex flex-wrap items-center gap-sm">
             <CampaignStatusBadge status={status} />
             {endsAt && status !== 'ended' && (
-              <span className="ink-border bg-surface-container-highest px-sm py-xs font-mono text-meta-mono uppercase">
+              <span className="bg-surface-container-highest px-sm py-xs font-mono text-meta-mono uppercase ink-border">
                 Encerra em {endsAt}
               </span>
             )}
@@ -67,7 +67,7 @@ export function CampaignDetailView({ campaign, related }: CampaignDetailViewProp
           </div>
 
           {value && (
-            <div className="ink-border flex flex-col gap-xs bg-surface-container-highest p-md">
+            <div className="flex flex-col gap-xs bg-surface-container-highest p-md ink-border">
               <p className="font-mono text-label-mono text-secondary uppercase">Valor estimado</p>
               <p className="text-headline-md">{value}</p>
             </div>
@@ -82,7 +82,7 @@ export function CampaignDetailView({ campaign, related }: CampaignDetailViewProp
           <CampaignSteps steps={campaign.mechanics} />
 
           {(campaign.rulesText || campaign.officialPostUrl) && (
-            <div className="ink-border mt-md flex flex-col gap-sm bg-surface p-md">
+            <div className="mt-md flex flex-col gap-sm bg-surface p-md ink-border">
               <h2 className="font-mono text-label-mono uppercase">Regulamento</h2>
 
               {campaign.rulesText && (
@@ -94,7 +94,7 @@ export function CampaignDetailView({ campaign, related }: CampaignDetailViewProp
                   href={campaign.officialPostUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ink-border mt-sm inline-flex w-max items-center gap-xs px-md py-sm font-mono text-label-mono uppercase transition-colors hover:bg-surface-container-highest"
+                  className="mt-sm inline-flex w-max items-center gap-xs px-md py-sm font-mono text-label-mono uppercase transition-colors ink-border hover:bg-surface-container-highest"
                 >
                   Ver publicação oficial
                   <Icons.externalLink size={ICON_SIZE.sm} aria-hidden="true" />

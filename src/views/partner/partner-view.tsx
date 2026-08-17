@@ -82,7 +82,7 @@ export function PartnerView() {
             <li key={tier.title} className="contents">
               <article
                 className={cn(
-                  'ink-border ink-lift relative flex h-full flex-col p-md',
+                  'relative flex h-full ink-lift flex-col p-md ink-border',
                   tier.surface,
                 )}
               >

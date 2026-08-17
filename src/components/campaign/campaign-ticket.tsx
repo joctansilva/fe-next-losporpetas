@@ -28,7 +28,7 @@ export function CampaignTicket({ campaign, notchColor, className }: CampaignTick
   return (
     <article
       className={cn(
-        'ticket-shape ink-border ink-lift group relative flex w-full max-w-md flex-col items-center gap-md bg-surface-container-highest p-md md:flex-row',
+        'group ticket-shape relative flex w-full max-w-md ink-lift flex-col items-center gap-md bg-surface-container-highest p-md ink-border md:flex-row',
         className,
       )}
       style={notchColor ? ({ '--ticket-notch': notchColor } as React.CSSProperties) : undefined}

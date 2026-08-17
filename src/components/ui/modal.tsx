@@ -108,7 +108,7 @@ export function Modal({
         if (event.target === dialogRef.current) onClose();
       }}
       className={cn(
-        'ink-border ink-shadow-lg m-auto w-[calc(100vw-2rem)] bg-surface p-0 text-on-surface',
+        'm-auto w-[calc(100vw-2rem)] bg-surface p-0 text-on-surface ink-shadow-lg ink-border',
         // `open:flex` e não `flex`: ver o aviso sobre display no comentário acima.
         'max-h-[min(90dvh,48rem)] open:flex open:flex-col',
         'backdrop:bg-on-background/70',
@@ -125,7 +125,7 @@ export function Modal({
           type="button"
           onClick={onClose}
           aria-label="Fechar"
-          className="ink-border flex size-11 shrink-0 items-center justify-center bg-surface transition-colors hover:bg-primary hover:text-on-primary"
+          className="flex size-11 shrink-0 items-center justify-center bg-surface transition-colors ink-border hover:bg-primary hover:text-on-primary"
         >
           <Icons.close size={ICON_SIZE.md} aria-hidden="true" />
         </button>

@@ -29,7 +29,7 @@ export function CampaignAlert({ campaigns }: { campaigns: CampaignListItem[] }) 
         return (
           <section
             key={campaign.id}
-            className="ink-border ink-shadow relative overflow-hidden bg-primary p-md text-on-primary"
+            className="relative overflow-hidden bg-primary p-md text-on-primary ink-shadow ink-border"
           >
             <div
               aria-hidden="true"

@@ -42,7 +42,7 @@ export function HeroSection() {
           // (ícone + input + botão) e destacar só o input pareceria quebrado.
           // Por isso `focus-within` aqui e `outline-none` no input abaixo — a
           // indicação de foco continua existindo, apenas mudou de elemento.
-          className="ink-border ink-shadow ink-lift flex w-full items-center bg-surface-container-lowest p-md focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-primary"
+          className="flex w-full ink-lift items-center bg-surface-container-lowest p-md ink-shadow ink-border focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-primary"
         >
           <label htmlFor="busca-home" className="sr-only">
             Buscar por restaurante, bairro ou categoria
@@ -66,7 +66,7 @@ export function HeroSection() {
           <button
             type="submit"
             aria-label="Buscar"
-            className="ink-border ml-sm flex size-11 shrink-0 items-center justify-center bg-surface-container-highest transition-colors hover:bg-primary hover:text-on-primary"
+            className="ml-sm flex size-11 shrink-0 items-center justify-center bg-surface-container-highest transition-colors ink-border hover:bg-primary hover:text-on-primary"
           >
             <Icons.arrowRight size={ICON_SIZE.md} aria-hidden="true" />
           </button>

@@ -33,7 +33,7 @@ export function Stamp({ size = 'md', className }: StampProps) {
   return (
     <div
       className={cn(
-        'ink-border ink-shadow ink-stamp flex shrink-0 items-center justify-center rounded-full bg-primary-container p-sm text-center',
+        'flex shrink-0 ink-stamp items-center justify-center rounded-full bg-primary-container p-sm text-center ink-shadow ink-border',
         SIZE_CLASS[size],
         className,
       )}

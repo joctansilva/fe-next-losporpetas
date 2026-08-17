@@ -25,7 +25,7 @@ export function PartnerSidebar({ restaurant }: { restaurant: CampaignRestaurant 
         Parceiro
       </h2>
 
-      <div className="ink-border flex flex-col bg-surface-container-highest">
+      <div className="flex flex-col bg-surface-container-highest ink-border">
         <div className="relative h-48 w-full border-b-2 border-on-background bg-surface-dim">
           <Photo media={restaurant.cover} context="card" />
         </div>

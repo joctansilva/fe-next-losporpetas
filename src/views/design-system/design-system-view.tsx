@@ -71,7 +71,7 @@ const SPACING = [
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="flex flex-col gap-md">
-      <h2 className="ink-border border-x-0 border-t-0 pb-xs text-headline-md">{title}</h2>
+      <h2 className="border-x-0 border-t-0 pb-xs text-headline-md ink-border">{title}</h2>
       {children}
     </section>
   );
@@ -79,7 +79,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Swatch({ token, hex, note }: { token: string; hex: string; note: string }) {
   return (
-    <div className="ink-border flex flex-col">
+    <div className="flex flex-col ink-border">
       <div className="h-16 w-full" style={{ backgroundColor: `var(--color-${token})` }} />
       <div className="flex flex-col gap-xs border-t-2 border-on-background bg-surface-container-lowest p-sm">
         <code className="font-mono text-label-mono">{token}</code>
@@ -139,28 +139,28 @@ export function DesignSystemView() {
 
       <Section title="Bordas, sombras e interação">
         <div className="grid grid-cols-1 gap-md md:grid-cols-3">
-          <div className="ink-border bg-surface-container-lowest p-md">
+          <div className="bg-surface-container-lowest p-md ink-border">
             <code className="font-mono text-label-mono">ink-border</code>
             <p className="mt-xs text-body-sm text-on-surface-variant">2px sólidos de tinta.</p>
           </div>
-          <div className="ink-border ink-shadow bg-surface-container-lowest p-md">
+          <div className="bg-surface-container-lowest p-md ink-shadow ink-border">
             <code className="font-mono text-label-mono">ink-shadow</code>
             <p className="mt-xs text-body-sm text-on-surface-variant">
               Sólida e deslocada, nunca desfocada.
             </p>
           </div>
-          <div className="ink-border ink-lift cursor-pointer bg-surface-container-lowest p-md">
+          <div className="ink-lift cursor-pointer bg-surface-container-lowest p-md ink-border">
             <code className="font-mono text-label-mono">ink-lift</code>
             <p className="mt-xs text-body-sm text-on-surface-variant">
               Passe o mouse: o card levanta. Respeita movimento reduzido.
             </p>
           </div>
         </div>
-        <div className="ink-dashed mt-sm pt-sm">
+        <div className="mt-sm pt-sm ink-dashed">
           <code className="font-mono text-label-mono">ink-dashed</code>
         </div>
         <div className="mt-md flex flex-wrap items-center gap-lg">
-          <div className="ink-border ink-stamp ink-shadow flex size-28 items-center justify-center rounded-full bg-primary-container p-sm text-center">
+          <div className="flex size-28 ink-stamp items-center justify-center rounded-full bg-primary-container p-sm text-center ink-shadow ink-border">
             <span className="font-display text-body-sm leading-none text-on-primary">
               Aprovado
               <br />
@@ -192,7 +192,7 @@ export function DesignSystemView() {
           <Button variant="inverse">Sobre fundo escuro</Button>
         </div>
         <p className="mt-md text-body-sm text-on-surface-variant">
-          Navegue com <kbd className="ink-border px-xs font-mono text-meta-mono">Tab</kbd> — o
+          Navegue com <kbd className="px-xs font-mono text-meta-mono ink-border">Tab</kbd> — o
           contorno de foco vem do <code>:focus-visible</code> global. Navegação usa{' '}
           <code>buttonClassName()</code> num <code>&lt;Link&gt;</code>; ação usa{' '}
           <code>&lt;Button&gt;</code>.
@@ -294,8 +294,8 @@ export function DesignSystemView() {
         <p className="mt-md max-w-2xl text-body-sm text-on-surface-variant">
           Construído sobre o <code>&lt;dialog&gt;</code> nativo. Abra e teste{' '}
           <strong>só com o teclado</strong>:{' '}
-          <kbd className="ink-border px-xs font-mono text-meta-mono">Tab</kbd> fica preso dentro,{' '}
-          <kbd className="ink-border px-xs font-mono text-meta-mono">Esc</kbd> fecha, e o foco volta
+          <kbd className="px-xs font-mono text-meta-mono ink-border">Tab</kbd> fica preso dentro,{' '}
+          <kbd className="px-xs font-mono text-meta-mono ink-border">Esc</kbd> fecha, e o foco volta
           para o botão que abriu.
         </p>
       </Section>
@@ -338,7 +338,7 @@ export function DesignSystemView() {
           {Object.entries(Icons).map(([name, Icon]) => (
             <div
               key={name}
-              className="ink-border flex flex-col items-center gap-xs bg-surface-container-lowest p-sm"
+              className="flex flex-col items-center gap-xs bg-surface-container-lowest p-sm ink-border"
             >
               <Icon size={ICON_SIZE.lg} aria-hidden="true" />
               <code className="text-center font-mono text-meta-mono break-all">{name}</code>
