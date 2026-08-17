@@ -57,7 +57,12 @@ export function PhotoPlaceholder({ className }: { className?: string }) {
         className,
       )}
     >
-      <span className="font-display text-headline-md text-on-surface/30 uppercase">
+      {/* ⚠️ O layout do Stitch usava `text-on-surface/30`, que dá 1.86:1 sobre
+          este fundo — reprovado no Lighthouse. `aria-hidden` não conserta
+          contraste: quem enxerga pouco continua vendo o elemento, só que sem
+          conseguir ler. Em 60% fica ~3.9:1, acima do mínimo de 3:1 para texto
+          grande, e o efeito continua discreto. */}
+      <span className="font-display text-headline-md text-on-surface/60 uppercase">
         Foto em breve
       </span>
     </div>

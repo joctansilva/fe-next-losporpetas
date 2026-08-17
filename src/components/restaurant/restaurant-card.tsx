@@ -115,8 +115,11 @@ export function RestaurantCard({
       </div>
 
       <div className={cn('flex flex-1 flex-col gap-sm', isCompact ? 'p-sm' : 'p-md')}>
+        {/* `min-w-0` + `break-words`: sem isso, um nome longo sem espaços
+            empurra o badge de preço para fora do card. Filho de flex não
+            encolhe abaixo do próprio conteúdo por padrão. */}
         <div className="flex items-start justify-between gap-sm">
-          <h3 className={cn('font-display leading-none', TITLE_CLASS[variant])}>
+          <h3 className={cn('min-w-0 font-display leading-none break-words', TITLE_CLASS[variant])}>
             {/* `after:absolute inset-0` faz o card inteiro clicável sem aninhar
                 links nem criar um <div onClick> inacessível. */}
             <Link href={href} className="after:absolute after:inset-0 after:content-['']">

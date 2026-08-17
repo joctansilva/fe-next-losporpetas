@@ -38,7 +38,11 @@ export function HeroSection() {
           action="/restaurantes"
           method="get"
           role="search"
-          className="ink-border ink-shadow ink-lift flex w-full items-center bg-surface-container-lowest p-md"
+          // O foco vai para o conjunto, não para o campo: é um controle composto
+          // (ícone + input + botão) e destacar só o input pareceria quebrado.
+          // Por isso `focus-within` aqui e `outline-none` no input abaixo — a
+          // indicação de foco continua existindo, apenas mudou de elemento.
+          className="ink-border ink-shadow ink-lift flex w-full items-center bg-surface-container-lowest p-md focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-primary"
         >
           <label htmlFor="busca-home" className="sr-only">
             Buscar por restaurante, bairro ou categoria
@@ -55,7 +59,7 @@ export function HeroSection() {
             name="q"
             type="search"
             autoComplete="off"
-            placeholder="Buscar por restaurante, bairro ou categoria..."
+            placeholder="Buscar por restaurante, bairro ou categoria…"
             className="w-full min-w-0 border-none bg-transparent p-0 font-display text-[1.5rem] text-on-background uppercase placeholder:text-on-surface-variant/50 focus:ring-0 focus:outline-none md:text-headline-md"
           />
 

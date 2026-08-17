@@ -131,8 +131,10 @@ export function Modal({
         </button>
       </header>
 
-      {/* min-h-0 é o que permite o filho encolher e rolar dentro do flex. */}
-      <div className="min-h-0 flex-1 overflow-y-auto p-md">{children}</div>
+      {/* `min-h-0` permite o filho encolher e rolar dentro do flex.
+          `overscroll-contain` impede que, ao chegar no fim da rolagem, o gesto
+          continue e role a página atrás do modal — o chamado scroll chaining. */}
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-md">{children}</div>
 
       {footer && (
         <footer className="flex shrink-0 flex-wrap justify-end gap-sm border-t-2 border-on-background bg-surface-container-low p-md">

@@ -24,7 +24,7 @@ type SearchInputProps = {
 export function SearchInput({
   defaultValue,
   preserve,
-  placeholder = 'Buscar restaurante ou bairro...',
+  placeholder = 'Buscar restaurante ou bairro…',
   className,
 }: SearchInputProps) {
   return (

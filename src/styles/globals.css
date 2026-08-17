@@ -21,6 +21,20 @@
     line-height: var(--text-body-md--line-height);
   }
 
+  /* Toque no mobile — o tráfego vem do Instagram, então é o caso principal.
+     `manipulation` remove o atraso de ~300ms que o navegador espera para
+     detectar duplo-toque, e o realce padrão do Android (retângulo azul) é
+     substituído pelo nosso próprio estado de foco. */
+  a,
+  button,
+  label,
+  select,
+  summary,
+  [role='button'] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   /* Títulos do produto são Bebas Neue em caixa alta, sempre.
      O nível do heading é decidido pela hierarquia do documento,
      nunca pelo tamanho visual — o tamanho vem de classe utilitária. */

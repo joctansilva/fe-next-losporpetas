@@ -115,10 +115,13 @@
     width: 100%;
     max-width: var(--container-page);
     margin-inline: auto;
-    padding-inline: var(--spacing-margin-mobile);
+
+    /* `max()` com a área segura: em celular com notch, na horizontal, o recorte
+       da tela invade a lateral e comeria o conteúdo sem isto. */
+    padding-inline: max(var(--spacing-margin-mobile), env(safe-area-inset-left));
 
     @media (width >= 48rem) {
-      padding-inline: var(--spacing-margin-desktop);
+      padding-inline: max(var(--spacing-margin-desktop), env(safe-area-inset-left));
     }
   }
 

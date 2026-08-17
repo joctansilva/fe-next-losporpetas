@@ -44,7 +44,9 @@ export function CampaignCard({ campaign }: { campaign: CampaignListItem }) {
           media={campaign.cover}
           context="card"
           className={cn(
-            'transition-all duration-300',
+            // `transition-filter`, não `transition-all`: animar tudo faz o
+            // navegador observar propriedades que nunca mudam.
+            'transition-[filter] duration-300',
             open ? 'grayscale group-hover:grayscale-0' : 'grayscale',
           )}
         />

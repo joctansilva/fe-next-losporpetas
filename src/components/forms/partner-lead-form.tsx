@@ -36,12 +36,23 @@ export function PartnerLeadForm() {
       />
 
       <form className="relative z-0 flex flex-col gap-md">
+        {/* `autoComplete` com os tokens padrão: o navegador preenche nome e
+            telefone do próprio dono do aparelho, que é quem está do outro lado.
+            Sem isso, o formulário obriga a digitar tudo no celular. */}
         <div className="grid grid-cols-1 gap-md md:grid-cols-2">
-          <Input id="lead-nome" name="nome" label="Nome do responsável" required disabled />
+          <Input
+            id="lead-nome"
+            name="nome"
+            label="Nome do responsável"
+            autoComplete="name"
+            required
+            disabled
+          />
           <Input
             id="lead-restaurante"
             name="restaurante"
             label="Nome do restaurante"
+            autoComplete="organization"
             required
             disabled
           />
@@ -54,6 +65,7 @@ export function PartnerLeadForm() {
             label="WhatsApp"
             type="tel"
             inputMode="tel"
+            autoComplete="tel"
             placeholder="(11) 91234-5678"
             required
             disabled
@@ -63,6 +75,10 @@ export function PartnerLeadForm() {
             name="instagram"
             label="Instagram"
             placeholder="@seurestaurante"
+            autoComplete="off"
+            // Handle não é palavra de dicionário: corretor só atrapalha.
+            spellCheck={false}
+            autoCapitalize="none"
             disabled
           />
         </div>
@@ -71,7 +87,7 @@ export function PartnerLeadForm() {
           id="lead-tipo"
           name="tipo"
           label="Tipo de parceria de interesse"
-          placeholder="Selecione uma opção..."
+          placeholder="Selecione uma opção…"
           options={INTEREST_OPTIONS}
           disabled
         />

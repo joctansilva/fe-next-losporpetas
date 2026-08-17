@@ -84,7 +84,7 @@ export function MobileDrawer() {
           setOpen(false);
         }}
         onClose={() => setOpen(false)}
-        className="m-0 h-dvh max-h-none w-screen max-w-none bg-on-background p-0 text-surface backdrop:bg-on-background/80 open:flex open:flex-col"
+        className="m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-on-background p-0 text-surface backdrop:bg-on-background/80 open:flex open:flex-col"
       >
         <div className="flex items-center justify-between border-b-2 border-surface px-margin-mobile py-base">
           <span
