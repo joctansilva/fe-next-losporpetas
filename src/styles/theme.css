@@ -1,0 +1,178 @@
+/* ==========================================================================
+ * LOSPORPETAS — tokens de design
+ *
+ * Extraídos dos 5 layouts do Stitch e normalizados.
+ * Fonte de verdade: ../../../documentation/06-DESIGN-SYSTEM.md
+ *
+ * Estética: brutalismo editorial / fanzine gastronômico.
+ *   1. Bordas são pretas, sólidas, 2px — nunca cinza claro, nunca 1px.
+ *   2. Sombras são sólidas e deslocadas (4px 4px 0) — nunca desfocadas.
+ *   3. Títulos são Bebas Neue em uppercase, sempre.
+ * ========================================================================== */
+
+@theme {
+  /* ---------------------------------------------------------------------- *
+   * CORES — sistema Material 3 herdado do Stitch                            *
+   * ---------------------------------------------------------------------- */
+
+  /* Marca */
+  --color-primary: #9f2b15; /* vermelho molho — CTA, links, destaques */
+  --color-primary-container: #c1432b;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #ffeeeb;
+  --color-primary-fixed: #ffdad3;
+  --color-primary-fixed-dim: #ffb4a5;
+  --color-on-primary-fixed: #3e0400;
+  --color-on-primary-fixed-variant: #8a1c07;
+  --color-inverse-primary: #ffb4a5;
+
+  /* Tinta e papel */
+  --color-background: #fff9ed; /* papel */
+  --color-on-background: #1f1c10; /* TINTA — a cor de todas as bordas */
+  --color-surface: #fff9ed;
+  --color-on-surface: #1f1c10;
+  --color-surface-bright: #fff9ed;
+  --color-surface-dim: #e1dac6;
+  --color-surface-variant: #eae2ce;
+  --color-on-surface-variant: #59413c; /* texto secundário */
+  --color-inverse-surface: #343023;
+  --color-inverse-on-surface: #f8f0dc;
+
+  /* Elevação por tom, não por sombra */
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fbf3df;
+  --color-surface-container: #f5edda;
+  --color-surface-container-high: #efe8d4;
+  --color-surface-container-highest: #eae2ce;
+
+  /* Secundária */
+  --color-secondary: #645d57;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ebe1d8;
+  --color-on-secondary-container: #6b635c;
+  --color-secondary-fixed: #ebe1d8;
+  --color-secondary-fixed-dim: #cfc5bd;
+  --color-on-secondary-fixed: #201b16;
+  --color-on-secondary-fixed-variant: #4c4640;
+
+  /* Terciária — mostarda */
+  --color-tertiary: #744e00;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #946500;
+  --color-on-tertiary-container: #fff0de;
+  --color-tertiary-fixed: #ffddaf;
+  --color-tertiary-fixed-dim: #fcbb4e; /* mostarda — badges de destaque */
+  --color-on-tertiary-fixed: #281800;
+  --color-on-tertiary-fixed-variant: #614000;
+
+  /* Estado e contorno */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-outline: #8c716b; /* contraste 3.6:1 — só borda/ícone, nunca texto */
+  --color-outline-variant: #e0bfb9;
+  --color-surface-tint: #ac341d;
+
+  /* Adicionadas — não existiam no Stitch, necessárias no produto real */
+  --color-success: #2e6b34; /* confirmação de formulário */
+  --color-warning: #946500; /* avisos no admin */
+
+  /* ---------------------------------------------------------------------- *
+   * TIPOGRAFIA                                                              *
+   * Escala fluida com clamp(): elimina o degrau headline-lg-mobile do       *
+   * Stitch e reduz o número de variantes a manter.                          *
+   * ---------------------------------------------------------------------- */
+
+  --text-display-xl: clamp(3rem, 8vw, 5rem); /* 48px → 80px */
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-xl--font-weight: 400;
+
+  --text-headline-lg: clamp(2.25rem, 5vw, 3rem); /* 36px → 48px */
+  --text-headline-lg--line-height: 1;
+  --text-headline-lg--letter-spacing: 0.02em;
+  --text-headline-lg--font-weight: 400;
+
+  --text-headline-md: 2rem; /* 32px */
+  --text-headline-md--line-height: 1;
+  --text-headline-md--font-weight: 400;
+
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-lg--line-height: 1.75rem; /* 28px */
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 1rem; /* 16px */
+  --text-body-md--line-height: 1.5rem; /* 24px */
+  --text-body-md--font-weight: 400;
+
+  /* body-sm: usado nos layouts do Stitch sem estar definido no config deles.
+     O texto caía no default do navegador — este degrau corrige isso. */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-sm--line-height: 1.25rem; /* 20px */
+  --text-body-sm--font-weight: 400;
+
+  --text-label-mono: 0.8125rem; /* 13px */
+  --text-label-mono--line-height: 1rem; /* 16px */
+  --text-label-mono--font-weight: 500;
+
+  --text-meta-mono: 0.6875rem; /* 11px */
+  --text-meta-mono--line-height: 0.875rem; /* 14px */
+  --text-meta-mono--font-weight: 400;
+
+  /* ---------------------------------------------------------------------- *
+   * ESPAÇAMENTO — escala nomeada do Stitch                                  *
+   * Convive com a escala numérica padrão do Tailwind (p-4, gap-2…).         *
+   * ---------------------------------------------------------------------- */
+
+  --spacing-xs: 4px;
+  --spacing-base: 8px;
+  --spacing-sm: 12px;
+  --spacing-gutter: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --spacing-xl: 80px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 40px;
+
+  /* Largura do container principal */
+  --container-page: 1280px;
+
+  /* ---------------------------------------------------------------------- *
+   * RAIO — o brutalismo é quadrado; o arredondado é exceção (carimbos)      *
+   * ---------------------------------------------------------------------- */
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* ==========================================================================
+ * FONTES
+ * Injetadas por next/font em src/app/layout.tsx (self-hosted no build).
+ * `@theme inline` é obrigatório aqui: sem ele o Tailwind geraria uma
+ * referência à variável de tema em vez de resolver a variável da fonte.
+ * ========================================================================== */
+
+@theme inline {
+  --font-display: var(--font-bebas-neue); /* títulos — sempre uppercase */
+  --font-body: var(--font-inter); /* corpo */
+  --font-mono: var(--font-jetbrains-mono); /* labels, badges, metadados */
+  --font-sans: var(--font-inter); /* default do documento */
+}
+
+/* ==========================================================================
+ * CAMADAS (z-index)
+ * Escala única para não haver disputa de empilhamento ad hoc.
+ * O Stitch usava z-9999 no ruído, o que o deixava ACIMA de modais.
+ * ========================================================================== */
+
+:root {
+  --z-base: 0;
+  --z-sticky: 50; /* TopNav */
+  --z-noise: 100; /* textura — acima do conteúdo, abaixo de overlays */
+  --z-overlay: 200; /* backdrop de modal/drawer */
+  --z-modal: 210;
+  --z-toast: 300;
+}

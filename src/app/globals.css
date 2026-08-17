@@ -1,26 +1,83 @@
 @import 'tailwindcss';
+@import '../styles/theme.css';
+@import '../styles/utilities.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+ * CAMADA BASE
+ * ========================================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    /* O header é sticky: a âncora não pode ficar escondida atrás dele. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+  }
+
+  /* Títulos do produto são Bebas Neue em caixa alta, sempre.
+     O nível do heading é decidido pela hierarquia do documento,
+     nunca pelo tamanho visual — o tamanho vem de classe utilitária. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* --------------------------------------------------------------------
+   * FOCO VISÍVEL — não negociável.
+   * Os layouts do Stitch usavam `focus:ring-0` e `outline-none` em inputs
+   * e botões, o que torna o site inutilizável por teclado. Aqui o foco é
+   * garantido globalmente e com contraste alto.
+   * -------------------------------------------------------------------- */
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
+
+  /* Seleção de texto na cor da marca. */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  /* Imagem nunca estoura o container. */
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+ * MOVIMENTO REDUZIDO
+ * A estética tem deslocamentos e zooms fortes (cards que pulam 4px, imagens
+ * que dão scale). Quem configurou o sistema para reduzir movimento não deve
+ * receber nada disso.
+ * ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

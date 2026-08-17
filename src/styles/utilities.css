@@ -1,0 +1,135 @@
+/* ==========================================================================
+ * LOSPORPETAS — utilitários da estética brutalista
+ *
+ * Os HTMLs do Stitch usavam TRÊS nomes diferentes para a mesma coisa:
+ * `.brutalist-border`, `.ink-border` e `border-ink`. Aqui o nome é um só:
+ * o prefixo `ink-*`. Ver ../../../documentation/06-DESIGN-SYSTEM.md §5.
+ * ========================================================================== */
+
+/* Borda de tinta: 2px sólidos, a assinatura visual do produto. */
+@layer utilities {
+  .ink-border {
+    border: 2px solid var(--color-on-background);
+  }
+
+  /* Borda de tinta clara, para uso sobre fundo escuro ou foto. */
+  .ink-border-inverse {
+    border: 2px solid var(--color-surface);
+  }
+
+  /* Sombra sólida deslocada — nunca desfocada. */
+  .ink-shadow {
+    box-shadow: 4px 4px 0 0 var(--color-on-background);
+  }
+
+  .ink-shadow-lg {
+    box-shadow: 8px 8px 0 0 var(--color-on-background);
+  }
+
+  .ink-shadow-none {
+    box-shadow: none;
+  }
+
+  /* Divisor tracejado, usado entre blocos e nos "tickets" de sorteio. */
+  .ink-dashed {
+    border-top: 2px dashed var(--color-on-background);
+  }
+
+  /* ---------------------------------------------------------------------- *
+   * Interação: o card/botão "levanta" no hover.                             *
+   * Estava espalhado no Stitch como .brutalist-card / .brutalist-btn /      *
+   * .brutalist-shadow-hover. Aqui é uma coisa só.                           *
+   * ---------------------------------------------------------------------- */
+
+  .ink-lift {
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0 0 var(--color-on-background);
+    }
+
+    /* Feedback de clique: volta ao lugar, sombra some. */
+    &:active {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+
+    /* Movimento é forte; quem pediu para reduzir não recebe deslocamento. */
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover {
+        transform: none;
+        box-shadow: 4px 4px 0 0 var(--color-on-background);
+      }
+    }
+  }
+
+  /* Variante sutil para botões (levanta menos que um card). */
+  .ink-lift-sm {
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 var(--color-on-background);
+    }
+
+    &:active {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  /* ---------------------------------------------------------------------- *
+   * Carimbo "APROVADO PELO LOSPORPETAS"                                     *
+   * ---------------------------------------------------------------------- */
+
+  .ink-stamp {
+    transform: rotate(-15deg);
+    transition: transform 0.3s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  /* ---------------------------------------------------------------------- *
+   * Utilitário de container: largura máxima + margens do Stitch.            *
+   * Evita repetir `max-w-[1280px] mx-auto px-4 md:px-10` em cada seção.     *
+   * ---------------------------------------------------------------------- */
+
+  .page-container {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: var(--spacing-margin-mobile);
+
+    @media (width >= 48rem) {
+      padding-inline: var(--spacing-margin-desktop);
+    }
+  }
+
+  /* Esconde a barra de rolagem em faixas de scroll horizontal (chips, carrosséis).
+     O conteúdo continua rolável por toque, teclado e roda do mouse. */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
