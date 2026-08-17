@@ -1,5 +1,6 @@
-import type { CampaignListItem } from '@/domain/campaign';
+import type { CampaignDetail, CampaignListItem } from '@/domain/campaign';
 import { computeDisplayStatus, isCampaignOpen } from '@/domain/campaign';
+import type { CampaignType } from '@/domain/enums';
 import type { RestaurantDetail, RestaurantListItem } from '@/domain/restaurant';
 import { CAMPAIGNS } from './campaigns';
 import { PUBLISHED_RESTAURANTS, RESTAURANTS } from './restaurants';
@@ -62,4 +63,59 @@ export async function listActiveCampaignsByRestaurant(
 /** Usada só em desenvolvimento, para conferir os casos não publicados. */
 export async function listAllRestaurants(): Promise<RestaurantDetail[]> {
   return RESTAURANTS;
+}
+
+/* -------------------------------------------------------------------------- *
+ * Campanhas
+ * -------------------------------------------------------------------------- */
+
+/**
+ * Ações e sorteios separados por situação.
+ *
+ * O rascunho fica de fora: campanha não publicada não aparece no site. As
+ * encerradas continuam acessíveis de propósito — são prova social e destino
+ * permanente de posts antigos do Instagram.
+ */
+export async function listCampaigns(type: CampaignType | null = null): Promise<{
+  open: CampaignListItem[];
+  closed: CampaignListItem[];
+}> {
+  const visible = CAMPAIGNS.filter(
+    (campaign) => campaign.status !== 'draft' && (!type || campaign.type === type),
+  );
+
+  const open = visible
+    .filter((campaign) => computeDisplayStatus(campaign) !== 'ended')
+    // Quem encerra antes aparece primeiro: é a informação mais urgente.
+    .toSorted((a, b) => (a.endsAt ?? '').localeCompare(b.endsAt ?? ''));
+
+  const closed = visible
+    .filter((campaign) => computeDisplayStatus(campaign) === 'ended')
+    .toSorted((a, b) => (b.endsAt ?? '').localeCompare(a.endsAt ?? ''));
+
+  return { open, closed };
+}
+
+export async function getCampaignBySlug(slug: string): Promise<CampaignDetail | null> {
+  const campaign = CAMPAIGNS.find((item) => item.slug === slug);
+  return campaign && campaign.status !== 'draft' ? campaign : null;
+}
+
+export async function listPublishedCampaignSlugs(): Promise<string[]> {
+  return CAMPAIGNS.filter((campaign) => campaign.status !== 'draft').map(
+    (campaign) => campaign.slug,
+  );
+}
+
+/** "Você também pode gostar": outras campanhas rolando. */
+export async function listRelatedCampaigns(
+  campaignId: string,
+  limit = 3,
+): Promise<CampaignListItem[]> {
+  return CAMPAIGNS.filter(
+    (campaign) =>
+      campaign.id !== campaignId &&
+      campaign.status !== 'draft' &&
+      isCampaignOpen(computeDisplayStatus(campaign)),
+  ).slice(0, limit);
 }

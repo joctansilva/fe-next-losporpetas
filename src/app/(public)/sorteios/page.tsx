@@ -1,16 +1,26 @@
-import { PagePlaceholder } from '@/components/layout/page-placeholder';
+import type { Metadata } from 'next';
+import { listCampaigns } from '@/fixtures/queries';
+import { parseCampaignFilters } from '@/lib/campaign-filters';
+import { CampaignListView } from '@/views/campaign-list/campaign-list-view';
 
-export const metadata = {
-  title: 'Ações e sorteios',
-  description: 'Ações e sorteios ativos e encerrados do LOSPORPETAS e seus parceiros.',
-};
+export async function generateMetadata({
+  searchParams,
+}: PageProps<'/sorteios'>): Promise<Metadata> {
+  const { tipo } = parseCampaignFilters(await searchParams);
 
-export default function SorteiosPage() {
-  return (
-    <PagePlaceholder
-      title="Ações e sorteios"
-      phase="Fase 1.6"
-      description="Tudo o que está rolando agora e o que já encerrou, separados por status."
-    />
-  );
+  return {
+    title: 'Ações e sorteios',
+    description:
+      'Ações, sorteios e experiências do LOSPORPETAS com restaurantes parceiros. Veja o que está rolando agora.',
+    alternates: { canonical: '/sorteios' },
+    // Recorte por tipo não é indexável: mesmo conteúdo em outra ordem (risco R14).
+    robots: tipo ? { index: false, follow: true } : undefined,
+  };
+}
+
+export default async function SorteiosPage({ searchParams }: PageProps<'/sorteios'>) {
+  const filters = parseCampaignFilters(await searchParams);
+  const { open, closed } = await listCampaigns(filters.tipo);
+
+  return <CampaignListView filters={filters} open={open} closed={closed} />;
 }
