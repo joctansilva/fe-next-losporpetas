@@ -1,34 +1,61 @@
-import Link from 'next/link';
-import { Container } from '@/components/layout/container';
-import { buttonClassName } from '@/components/ui/button';
+import { Divider } from '@/components/layout/divider';
+import { computeDisplayStatus, isCampaignOpen } from '@/domain/campaign';
+import { CAMPAIGNS } from '@/fixtures/campaigns';
+import { CATEGORIES, PUBLISHED_RESTAURANTS } from '@/fixtures/restaurants';
+import { CampaignsSection } from './sections/campaigns-section';
+import { CategoriesSection } from './sections/categories-section';
+import { FreshSection } from './sections/fresh-section';
+import { HeroSection } from './sections/hero-section';
+import { HighlightsSection } from './sections/highlights-section';
+import { SuggestCtaSection } from './sections/suggest-cta-section';
 
 /**
  * Home / Descobrir.
  *
- * ⚠️ Ainda é um marcador — a home real (hero, destaques, categorias, novidades,
- * ações e CTA de indicação) é construída na Fase 1.3, a partir de
+ * A pergunta é "onde eu vou comer hoje?", então a página é sobre descoberta —
+ * não sobre o influenciador. Ordem das seções conforme
  * `documentation/referencia/home_stitch.html`.
+ *
+ * ⚠️ **Fase 1: os dados vêm de `src/fixtures/`.** Na Fase 2.5 cada bloco abaixo
+ * passa a chamar um repositório, com as consultas em `Promise.all` — quatro
+ * queries independentes não podem virar cascata. Nenhuma seção sabe de onde o
+ * dado veio: recebem tudo por prop, então a troca é local a este arquivo.
  */
 export function HomeView() {
-  return (
-    <Container
-      as="section"
-      className="flex flex-1 flex-col items-center justify-center gap-md py-xl text-center"
-    >
-      <p className="font-mono text-label-mono text-primary uppercase">Em construção · Fase 1.3</p>
-      <h1 className="text-display-xl">Onde comer hoje?</h1>
-      <p className="max-w-xl text-body-lg text-on-surface-variant">
-        Lugares que o Porpetas provou, aprovou e colocou no mapa.
-      </p>
+  // Destaques: na Fase 2 vêm de `featured_slots`; aqui, os dois mais recentes.
+  const highlights = PUBLISHED_RESTAURANTS.slice(0, 2);
 
-      {process.env.NODE_ENV !== 'production' && (
-        <Link
-          href="/dev/design-system"
-          className={buttonClassName({ variant: 'secondary', className: 'mt-md' })}
-        >
-          Ver o design system
-        </Link>
-      )}
-    </Container>
+  // "Acabou de entrar no mapa": publicados mais recentes primeiro.
+  const fresh = [...PUBLISHED_RESTAURANTS]
+    .sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''))
+    .slice(0, 4);
+
+  // Campanhas rolando, com as que encerram antes na frente.
+  const activeCampaigns = CAMPAIGNS.filter((campaign) =>
+    isCampaignOpen(computeDisplayStatus(campaign)),
+  )
+    .sort((a, b) => (a.endsAt ?? '').localeCompare(b.endsAt ?? ''))
+    .slice(0, 2);
+
+  return (
+    <>
+      <HeroSection />
+      <Divider variant="thick" />
+
+      <HighlightsSection restaurants={highlights} />
+      <Divider />
+
+      <CategoriesSection categories={CATEGORIES} />
+      <Divider />
+
+      <FreshSection restaurants={fresh} />
+      <Divider />
+
+      <CampaignsSection campaigns={activeCampaigns} />
+      <Divider />
+
+      <SuggestCtaSection />
+      <Divider variant="thick" />
+    </>
   );
 }

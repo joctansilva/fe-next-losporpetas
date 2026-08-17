@@ -132,4 +132,41 @@
       display: none;
     }
   }
+
+  /* ---------------------------------------------------------------------- *
+   * Formato de ticket — os cards de ação e sorteio da home.                 *
+   * Dois círculos meio para dentro das laterais, como um canhoto picotado.  *
+   * A cor do furo é variável para acompanhar o fundo da seção.              *
+   * ---------------------------------------------------------------------- */
+
+  .ticket-shape {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: var(--ticket-notch, var(--color-on-background));
+      z-index: 10;
+    }
+
+    &::before {
+      left: -15px;
+    }
+
+    &::after {
+      right: -15px;
+    }
+  }
+
+  /* Padrão de bolinhas da faixa de CTA (seção "Indicar um lugar"). */
+  .dot-pattern {
+    background-image: radial-gradient(circle, currentColor 2px, transparent 2px);
+    background-size: 30px 30px;
+  }
 }

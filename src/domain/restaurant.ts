@@ -12,6 +12,8 @@ import type {
 
 export type Media = {
   id: string;
+  /** Bucket do Storage. Ausente nos placeholders locais da Fase 1. */
+  bucket?: string;
   storagePath: string;
   alt: string;
   width: number;

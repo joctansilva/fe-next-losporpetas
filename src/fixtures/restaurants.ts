@@ -51,18 +51,30 @@ const neighborhood = (slug: string) => NEIGHBORHOODS.find((n) => n.slug === slug
 const tag = (slug: string) => TAGS.find((t) => t.slug === slug) as Tag;
 
 /**
- * Placeholder local até o Storage entrar (Fase 5).
- * As imagens do Stitch são temporárias e geradas por IA — não vão para produção.
+ * Placeholder local até o Storage entrar (Fase 2.5).
+ *
+ * Formas abstratas na paleta da marca, em `public/placeholder/`. As imagens do
+ * Stitch são temporárias e geradas por IA — não podem ir para produção
+ * (risco R20), e usá-las aqui só adiaria o problema.
+ *
+ * O arquivo é escolhido por hash do id: determinístico entre renders, e
+ * distribui os 6 desenhos sem precisar numerar cada chamada.
  */
-const photo = (id: string, alt: string): Media => ({
-  id,
-  storagePath: `placeholder/${id}.jpg`,
-  alt,
-  width: 1200,
-  height: 800,
-  blurDataUrl: null,
-  credit: null,
-});
+const PLACEHOLDER_COUNT = 6;
+
+const photo = (id: string, alt: string): Media => {
+  const hash = [...id].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  return {
+    id,
+    storagePath: `placeholder/p${(hash % PLACEHOLDER_COUNT) + 1}`,
+    alt,
+    width: 600,
+    height: 400,
+    blurDataUrl: null,
+    credit: null,
+  };
+};
 
 /* -------------------------------------------------------------------------- *
  * Restaurantes
