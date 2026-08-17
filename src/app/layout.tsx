@@ -47,11 +47,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
-  // Fase 6 refina isto por rota; aqui fica o padrão do site.
-  robots: {
-    index: true,
-    follow: true,
-  },
+  // ⚠️ Sem `robots` aqui de propósito. Indexar já é o padrão dos buscadores, e
+  // declarar `index, follow` no layout raiz fazia a página de 404 sair com DUAS
+  // tags conflitantes: a nossa e o `noindex` que o `notFound()` injeta.
+  // Restrição de indexação é decidida por rota (ver /restaurantes e /admin).
 };
 
 export const viewport: Viewport = {
