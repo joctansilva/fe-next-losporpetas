@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="LOSPORPETAS">
+  <rect width="32" height="32" fill="#fff9ed" />
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="#1f1c10" stroke-width="3" />
+  <path d="M9 8 v12 h8" fill="none" stroke="#9f2b15" stroke-width="4" stroke-linecap="square" />
+  <circle cx="22" cy="11" r="3.5" fill="#9f2b15" />
+</svg>
