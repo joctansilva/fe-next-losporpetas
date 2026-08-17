@@ -4,8 +4,15 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "noEmit": true,
+
+    /* Rigor de tipos — ver documentation/IMPLEMENTATION-PLAN.md 0.2.1 */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
