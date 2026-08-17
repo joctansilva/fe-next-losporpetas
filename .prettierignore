@@ -7,3 +7,10 @@ pnpm-lock.yaml
 next-env.d.ts
 *.md
 public
+
+# Artefatos gerados pela CLI do Supabase
+supabase/.temp
+supabase/.branches
+
+# Tipos gerados a partir do schema — reescritos por `pnpm db:types`
+src/server/supabase/database.types.ts

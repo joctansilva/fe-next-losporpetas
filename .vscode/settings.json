@@ -1,0 +1,28 @@
+{
+  // O language server de CSS do VS Code não conhece as at-rules do Tailwind v4
+  // (@theme, @utility, @layer, @apply) e as marca como "Unknown at rule".
+  // Sem isto, um auto-fix pode reescrever `@utility` como `@layer utilities`,
+  // o que faz as variantes (md:, hover:) deixarem de gerar CSS silenciosamente.
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  // Deixa a extensão oficial do Tailwind cuidar dos arquivos CSS.
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // Funções e utilitários onde a extensão deve sugerir classes.
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

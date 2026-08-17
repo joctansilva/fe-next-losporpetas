@@ -26,14 +26,33 @@ sem microservices.
 
 ## Rodando localmente
 
-**Pré-requisitos:** Node 22 LTS · pnpm 10+ · Docker (para o Supabase local, a partir da Fase 0.4)
+**Pré-requisitos:** Node 22 LTS · pnpm 10+ · Docker (para o Supabase local)
 
 ```bash
 pnpm install
+
+# 1. Sobe o Postgres local (primeira vez baixa ~2 GB de imagens Docker)
+pnpm db:start
+
+# 2. Copie as chaves impressas pelo comando acima para o .env.local
+cp .env.example .env.local
+pnpm db:status          # imprime API URL, anon key e service_role key
+
+# 3. Roda a aplicação
 pnpm dev
 ```
 
-Aplicação em http://localhost:3000
+> ⚠️ **Portas fora do padrão.** Este projeto usa a faixa `544xx` em vez da padrão `543xx`
+> porque outro projeto Supabase (`fe-next-syndos`) já ocupa a faixa padrão na máquina de
+> desenvolvimento. Definido em `supabase/config.toml` — os dois rodam ao mesmo tempo.
+
+| Serviço local | Endereço |
+|---|---|
+| Aplicação | http://localhost:3000 |
+| Supabase Studio | http://127.0.0.1:54423 |
+| API (PostgREST) | http://127.0.0.1:54421 |
+| Postgres | `postgresql://postgres:postgres@127.0.0.1:54422/postgres` |
+| Mailpit (e-mails de teste) | http://127.0.0.1:54424 |
 
 ### Scripts
 
@@ -42,7 +61,29 @@ Aplicação em http://localhost:3000
 | `pnpm dev` | Servidor de desenvolvimento (Turbopack) |
 | `pnpm build` | Build de produção |
 | `pnpm start` | Servir o build de produção |
-| `pnpm lint` | ESLint |
+| `pnpm check` | **Gate local:** typecheck + lint + format |
+| `pnpm lint` / `pnpm lint:fix` | ESLint |
+| `pnpm format` / `pnpm format:check` | Prettier |
+| `pnpm typecheck` | `tsc --noEmit` |
+| `pnpm db:start` / `pnpm db:stop` | Sobe/derruba o Supabase local |
+| `pnpm db:status` | Mostra URLs e chaves locais |
+| `pnpm db:reset` | Recria o banco do zero (migrations + seed) |
+| `pnpm db:types` | Regenera `src/server/supabase/database.types.ts` |
+
+> ⚠️ Rode `pnpm db:types` **toda vez** que criar ou alterar uma migration — os tipos
+> gerados são commitados e o `pnpm typecheck` depende deles.
+
+### Os três clientes Supabase
+
+Escolher o cliente errado é como um vazamento de dados acontece. A regra:
+
+| Cliente | Chave | RLS | Usar em |
+|---|---|---|---|
+| `createAnonClient()` | anon | ✅ respeita | Páginas públicas (home, diretório, restaurante) |
+| `createServerClient()` | anon + sessão | ✅ respeita | `/admin`, com usuário logado |
+| `createServiceClient()` | service-role | ❌ **ignora** | Cron e operações administrativas — só em `src/server/` |
+
+O ESLint impede importar `createServiceClient` fora de `src/server/`.
 
 ---
 
@@ -89,5 +130,5 @@ e retome o trabalho pelo `../documentation/IMPLEMENTATION-PLAN.md`.
 
 ## Status
 
-**Fase 0.1 concluída** — repositório e projeto criados, `pnpm dev` operacional.
-Próximo: Fase 0.2 (TypeScript strict, Prettier, ESLint com regras de fronteira, Husky, CI).
+**Fase 0.4 concluída** — projeto, gate de qualidade, design system e Supabase local no ar.
+Próximo: Fase 0.5 (componentes base: `Button`, `Badge`, `Card`, `Modal`, `Input`…).

@@ -135,6 +135,11 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
+    // Artefatos gerados pela CLI do Supabase (edge runtime, branches).
+    'supabase/.temp/**',
+    'supabase/.branches/**',
+    // Tipos gerados a partir do schema — reescritos por `pnpm db:types`.
+    'src/server/supabase/database.types.ts',
   ]),
 ]);
 
